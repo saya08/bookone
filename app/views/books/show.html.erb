@@ -6,6 +6,14 @@
 <%= @book.body %>
 <br>
 <br>
-<%= link_to "Edit", edit_book_path(@book.id) %>
+<% @books.each do |book| %>
+	<% if book.user == current_user %>
+	  <%= link_to "Edit", edit_book_path(book.id), method: :edit %>
+
+	｜
+	<% if book.user == current_user %>
+	  <%= link_to "Destroy", book_path(book.id), method: :delete, data:{confirm: "Can I delete it？"} %>
+	<% end %>
+<% end %>
 ｜
 <%= link_to "Back", books_path %>

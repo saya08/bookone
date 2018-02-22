@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+
+    before_action :authenticate_user!
+
   def index#空のモデルを渡す
   	@book = Book.new
   	#記事そ全件取得
@@ -12,6 +15,7 @@ class BooksController < ApplicationController
   def create
     # ストロングパラメーターを使用
      post = Book.new(post_params)
+     post.user_id = current_user.id
     # DBへ保存する
      post.save
     # 新規投稿画面へリダイレクト

@@ -1,7 +1,11 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="application.scss">
 <html>
   <head>
-    <title>Bookone</title>
+    <title>BookRecord</title>
+    <!-- deviseの機能 current_user, authenticate_user!,user_signed_in?←deviseっていうgemが入ってないと使えない -->
+    <!-- configure_permitted_parameters←deviseのフォーム入力時の必須項目を決めるやつ
+    ストロングパラメータのdeviseバージョン -->
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +13,41 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="row">
+          
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Book Record</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-right" id="navbarEexample1">
+          <ul class="nav navbar-nav">
+          <% if user_signed_in? %>
+            <li><%= link_to 'Home', user_path(current_user) ,class: "glyphicon glyphicon-home"%></p></li>
+            <li><%= link_to 'User List', users_path ,class: "glyphicon glyphicon-user"%></li>
+            <li><%= link_to 'Book List', books_path ,class: "glyphicon glyphicon-book"%></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete ,class: "glyphicon glyphicon-log-out"%></li>
+            <% else %>
+            <li><%= link_to "Top", root_path,class: "glyphicon glyphicon-home" %></li>
+            <li><%= link_to "About", start_about_path,class: "glyphicon glyphicon-heart-empty" %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path,class: "glyphicon glyphicon-user" %></li>
+            <li><%= link_to "Login", new_user_session_path,class: "glyphicon glyphicon-thumbs-up" %></li>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+    <%= yield %><!-- ←この下に各ページを持ってきている。yieldより上はヘッダーの固定の記述 -->
+        </div>
+      </div>
   </body>
 </html>

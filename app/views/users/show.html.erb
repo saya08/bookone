@@ -1,0 +1,50 @@
+
+<div class="container">
+ <div class="row">
+
+<!-- urlがuser/１や２など変わるので@userにして、該当のuserを探すようにする。 -->
+  <div class="col-lg-4">
+   <h2>User Info</h2>
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3 class="profile-name"><%= @user.name %></h3>
+    <h3 class="profile-name"><%= @user.introduction %></h3>
+	<% if @user.id == current_user.id %>
+        <p><%= link_to "Edit",  edit_user_path(@user),class: "glyphicon glyphicon-wrench" %></p>
+    <% end %>
+  </div>
+
+<div class="col-lg-8">
+  <h2>Books</h2>
+		<table class="table table-hover">
+		　<tr>
+		　　<th>Image</th>
+		　　<th>Title</th>
+		　　<th>Body</th>
+		　　<th colspan="3"></th>
+		　</tr>
+	<!-- @books.eachでbooksのレコードの数だけ繰り返し、
+	book.titleで記事の数だけ繰り返す
+	 -->
+			<% @user.books.each do |book| %>
+			<!-- |ブロック変数|に合わせる -->
+			　<tr>
+			   <td><%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size:'40x40' %>
+			　　<td><span><%= book.title %></span></td>
+			　　<td><span><%= book.body %></span></td>
+				　　<td><%= link_to "Show", book_path(book.id) %></td>
+
+				<% if book.user == current_user %>
+				　　<td><%= link_to "Edit", edit_book_path(book.id) %></td>
+				　　<td><%= link_to "Destroy", book_path(book.id), method: :delete, data:{confirm: "Can I delete it？"} %></td>
+				<% end %>
+			　</tr>
+			<% end %>
+		</table>
+  </div>
+
+ </div>
+</div>
