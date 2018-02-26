@@ -1,3 +1,13 @@
+<div class="container">
+ <div class="row">
+
+<div class="col-lg-4">
+<%= render 'books/userinfo1', user: current_user %>
+
+<%= render 'books/record', book: @book %>
+</div>
+
+<div class="col-lg-8">
 <h2>Show</h2>
 <br>
 <h3>Title</h3>
@@ -6,14 +16,14 @@
 <%= @book.body %>
 <br>
 <br>
-<% @books.each do |book| %>
-	<% if book.user == current_user %>
-	  <%= link_to "Edit", edit_book_path(book.id), method: :edit %>
-
-	｜
-	<% if book.user == current_user %>
-	  <%= link_to "Destroy", book_path(book.id), method: :delete, data:{confirm: "Can I delete it？"} %>
-	<% end %>
-<% end %>
+<% if @book.user == current_user %>
+  <%= link_to "Edit", edit_book_path(@book.id)%>
 ｜
+  <%= link_to "Destroy", book_path(@book.id), method: :delete, data:{confirm: "Can I delete it？"} %>
+<% end %>
+<br>
 <%= link_to "Back", books_path %>
+</div>
+
+ </div>
+</div>

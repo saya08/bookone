@@ -10,6 +10,7 @@ class BooksController < ApplicationController
 
   def show#投稿されたデータをBookのDBからfindで探してくる
   	@book = Book.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def create
@@ -20,7 +21,7 @@ class BooksController < ApplicationController
      post.save
     # 新規投稿画面へリダイレクト
     # redirect_to '/books'
-    redirect_to books_path
+    redirect_to book_path(post)#今保存した先に飛ぶ
   end
 
   def edit
@@ -46,6 +47,11 @@ class BooksController < ApplicationController
   private
 
   def post_params #テーブル名とカラム
-        params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body)
   end
+
+  def user_params
+    params.require(:user).permit(:name, :profile_image, :introduction)
+  end
+
 end

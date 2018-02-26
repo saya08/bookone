@@ -4,21 +4,12 @@
  <div class="row">
 
 <div class="col-lg-4">
- <h1>User Info</h1>
-  <%= attachment_image_tag current_user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size:'100x100' %><br>
-  <br>
-  <br>
-  <br>
-  <br>
-	<h3 class="profile-name"><%= current_user.name %></h3>
-	  <h3 class="profile-name"><%= current_user.introduction %></h3>
-	    <p><%= link_to "
-	        Edit",  edit_user_path(current_user) ,class: "glyphicon glyphicon-wrench" %></p>
+<%= render 'users/userinfo2', user: current_user %>
+<%= render 'books/record', book: @book %>
 </div>
 <div class="col-lg-8">
 
 <h1>Users</h1>
-<!-- |ブロック変数|に合わせる -->
 <table class="table table-hover">
  <tr>
 　<th>Image</th>
@@ -29,7 +20,7 @@
 <% @users.each do |user| %>
 <!-- |ブロック変数|に合わせる -->
 <tr>
- <td><%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size:'40x40' %>
+ <td><%= attachment_image_tag user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size:'40x40' %>
     </td>
 　　<td><span><%= user.name %></span></td>
 　　<td><%= link_to "Show", user_path(user.id) %></td>

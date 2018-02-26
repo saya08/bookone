@@ -1,3 +1,10 @@
+<div class="container">
+ <div class="row">
+<div class="col-lg-4">
+<%= render 'books/userinfo1', user: @book.user %>
+</div>
+
+<div class="col-lg-8">
 <h2>Edit</h2>
 <br>
 <!-- form_for部分 -->
@@ -12,3 +19,6 @@
 <%= link_to "Show", book_path(@book.id) %>
 ｜
 <%= link_to "Back", books_path %>
+ </div>
+</div>
+</div>

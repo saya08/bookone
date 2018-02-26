@@ -1,20 +1,11 @@
-
 <div class="container">
  <div class="row">
 
 <!-- urlがuser/１や２など変わるので@userにして、該当のuserを探すようにする。 -->
   <div class="col-lg-4">
-   <h2>User Info</h2>
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %><br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h3 class="profile-name"><%= @user.name %></h3>
-    <h3 class="profile-name"><%= @user.introduction %></h3>
-	<% if @user.id == current_user.id %>
-        <p><%= link_to "Edit",  edit_user_path(@user),class: "glyphicon glyphicon-wrench" %></p>
-    <% end %>
+<%= render 'users/userinfo2', user: current_user %>
+     <!-- view/books/_record.html.erdの部分テンプレートを使用 -->
+     <%= render 'books/record', book: @book %>
   </div>
 
 <div class="col-lg-8">

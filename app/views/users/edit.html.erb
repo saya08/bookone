@@ -9,13 +9,13 @@
                       <div class="col-md-4 col-md-offset-4">
                           <div class="form-user style-1 rounded has-shadow-1"> 
                             <div class="form-header text-center">
-                                <h2 class="form-header-title">プロフィール編集</h2>
+                                <h2 class="form-header-title">Edit Profile</h2>
                             </div>
                             <div class="form-body">
                                   <!-- 画像設定用の記述 -->
                                   <div class="form-group has-icon">
                                     <div class="user-edit-image">
-                                          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+                                          <%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size:'100x100' %>
                                     </div>
 
                                   </div>

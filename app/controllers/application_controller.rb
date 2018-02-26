@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 
+
 #全てのページでログイン認証が必要
 #before_actionで、applicationコントローラのアクションが実行される前に実行。
 #authenticate_user!でログイン認証されていなければrootパスへリダイレクトする
