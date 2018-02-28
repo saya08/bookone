@@ -14,9 +14,14 @@ before_action :authenticate_user!
     @book = Book.new#レコード一件分確保して渡してあげる
   end
 
-#params[:id]からユーザ情報を取得して@userインスタンスにしまう。
   def edit
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
+    if @user == current_user
+#アクセスしてきたユーザがログインユーザだったら編集画面へ
+#異なれば今表示している詳細ページを表示する
+    else
+      redirect_to user_path(@user.id)
+    end
   end
 
   def update

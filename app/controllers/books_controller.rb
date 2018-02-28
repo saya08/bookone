@@ -15,17 +15,28 @@ class BooksController < ApplicationController
 
   def create
     # ストロングパラメーターを使用
-     post = Book.new(post_params)
-     post.user_id = current_user.id
+     @book = Book.new(post_params)
+     @book.user_id = current_user.id
     # DBへ保存する
-     post.save
+    if @book.save
     # 新規投稿画面へリダイレクト
     # redirect_to '/books'
-    redirect_to book_path(post)#今保存した先に飛ぶ
+      redirect_to book_path(@book)#今保存した先に飛ぶ
+    #エラーで保存できなかった場合、エラー投稿である@bookを持ったまま
+    #Book.allで一覧表示画面（インデックス）に戻る。
+    #redirect_toを使うと、エラー投稿を持ったまま表示できない。
+    else
+      @books = Book.all
+      render 'index'
+    end
   end
 
   def edit
   	@book = Book.find(params[:id])
+    if @book.user == current_user#本を保存した人
+    else
+      redirect_to books_path
+    end
   end
 
   def update

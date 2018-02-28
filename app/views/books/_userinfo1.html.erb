@@ -6,4 +6,6 @@
 <br>
 <h3 class="profile-name"><%= user.name %></h3>
 <h3 class="profile-name"><%= user.introduction %></h3><br>
+<% if user == current_user %>
 <p><%= link_to "Edit",  edit_user_path(user),class: "glyphicon glyphicon-wrench" %></p>
+<% end %>

@@ -2,8 +2,8 @@
  <div class="row">
 
 <!-- urlがuser/１や２など変わるので@userにして、該当のuserを探すようにする。 -->
-  <div class="col-lg-4">
-<%= render 'users/userinfo2', user: current_user %>
+  <div class="col-lg-4"><!-- user: current_user -->
+<%= render 'users/userinfo2', user: @user %>
      <!-- view/books/_record.html.erdの部分テンプレートを使用 -->
      <%= render 'books/record', book: @book %>
   </div>
